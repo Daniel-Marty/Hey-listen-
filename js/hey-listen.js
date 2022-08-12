@@ -71,20 +71,16 @@ setTimeout(function () {
     }
 }, 2000);
 
-function sayItBitch() {
-    speech.text = currentSentence;
+function sayItBitch(answer) {
+    speech.text = answer;
     window.speechSynthesis.speak(speech);
     // speechSynthesis.speak(new SpeechSynthesisUtterance(`${currentSentence}`))
 }
-function sayTense() {
-    if (body.style.backgroundColor == 'rgb(60, 124, 241)') {
-        speech.text = "past";
-        window.speechSynthesis.speak(speech);
-    } else if (body.style.backgroundColor == 'rgb(0, 165, 50)') {
-        speech.text = "present";
-        window.speechSynthesis.speak(speech);
-    } else {
-        speech.text = "future";
-        window.speechSynthesis.speak(speech);
+
+
+// =======================================DIALOGUE FUNCTIONS=======================================
+function keyWordsCheck() {
+    if (textarea.innerHTML.includes('hello')) {
+        sayItBitch('how have you been my king');
     }
-};
+}
