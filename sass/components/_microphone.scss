@@ -1,0 +1,12 @@
+.microphone {
+    position: absolute;
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    right: 20px;
+    top:30px;
+    transition: 100ms ease-in;
+}
+.microphone:active {
+    scale: 1.2;
+}
