@@ -122,6 +122,11 @@ body {
   transition: 300ms ease-in;
 }
 
+.input {
+  margin-left: 200px;
+  margin-top: 40px;
+}
+
 .microphone {
   position: absolute;
   display: inline-block;

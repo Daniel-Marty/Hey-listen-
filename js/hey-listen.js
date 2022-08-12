@@ -5,7 +5,22 @@ recognition.lang = 'en-En';
 
 const microphone = document.getElementById('microphone');
 const currentSentence = '';
+const inputText = document.getElementById('input');
 
+// ============================DEBOUNCE======================
+const debounce = (fn, delay) => {
+    let timeoutID;
+    return function (...args) {
+        if (timeoutID) {
+            clearTimeout(timeoutID);
+        }
+        timeoutID = setTimeout(() => {
+            fn(...args)
+        }, delay)
+    }
+}
+
+// ==============================        MICRO              ===============================
 
 microphone.addEventListener('click', function () {
     recognition.start();
@@ -33,18 +48,12 @@ recognition.onresult = function (e) {
 //         checkFSTest();
 //     }
 // }
-input.addEventListener('keydown', function (event) {
-    if (event.code === 'Enter') {
-        input.value = '';
-    }
-})
 // input.addEventListener('input', () => {
 //     transcript = input.value;
 //     textarea.innerHTML = input.value;
 //     // checkTest();
 // })
 
-const input = document.getElementById('input');
 
 // ===================================SPEECH========================
 // var voices = window.speechSynthesis.getVoices();
@@ -77,10 +86,39 @@ function sayItBitch(answer) {
     // speechSynthesis.speak(new SpeechSynthesisUtterance(`${currentSentence}`))
 }
 
+// =============================  input  =========================
 
+// inputText.addEventListener('keydown', function (event) {
+//     if (event.code === 'Enter') {
+//         input.value = '';
+//     }
+// })
+let KW = '';
+inputText.addEventListener('input', () => {
+    // transcript = input.value.toUpperCase();
+    transcript = input.value;
+    textarea.innerHTML = input.value;
+})
+inputText.addEventListener('input', debounce(e => {
+    KW = `${textarea.innerHTML}`
+    keyWordsCheck();
+    console.log(KW);
+}, 1000));
+
+// let KW = ''
+// function (word) {
+//     keyWords.includes(word)
+//     KW = word;
+// }
+
+// function setKeyWords(catchWords) {
+//     if (textarea.innerHTML.includes(`${catchWords}`))
+//         keyWords = catchWords;
+//     console.log(keyWords);
+// } 
 // =======================================DIALOGUE FUNCTIONS=======================================
 function keyWordsCheck() {
-    if (textarea.innerHTML.includes('hello')) {
-        sayItBitch('how have you been my king');
+    if (KW.includes('hello') || KW.includes('hi') || KW.includes('morning') || KW.includes('afternoon') || KW.includes('evening')) {
+        sayItBitch("What's up");
     }
 }
