@@ -99,6 +99,7 @@ inputText.addEventListener('input', () => {
     // transcript = input.value.toUpperCase();
     // transcript = input.value;
     textarea.innerHTML = input.value;
+    KW = transcript;
 
 })
 inputText.addEventListener('input', debounce(e => {
@@ -152,7 +153,7 @@ function defaultResponse() {
     getRandoms(defaultArray);
 }
 function keyWordsCheck() {
-    if (KW.includes('hello') || KW.includes('hi') || KW.includes('morning') || KW.includes('afternoon') || KW.includes('evening') || KW.includes("WhatsApp")) {
+    if (KW.includes('hello') || KW.includes('hi ') || KW.includes('morning') || KW.includes('afternoon') || KW.includes('evening') || KW.includes("WhatsApp")) {
         getRandoms(greetingsArray);
     } else if ((KW.includes('how') || KW.includes('what') || KW.includes('tell')) && KW.includes('weather')) {
         getRandoms(weatherArray);
