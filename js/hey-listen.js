@@ -31,7 +31,7 @@ recognition.onresult = function (e) {
     transcript = e.results[0][0].transcript;
     transcript.innerHTML = transcript;
     textarea.innerHTML = transcript;
-
+    KW = transcript;
 }
 // speak.addEventListener('click', function () {
 //     speak.style.background = 'red';
@@ -84,6 +84,7 @@ setTimeout(function () {
 function sayItBitch(answer) {
     speech.text = answer;
     window.speechSynthesis.speak(speech);
+
     // speechSynthesis.speak(new SpeechSynthesisUtterance(`${currentSentence}`))
 }
 
@@ -99,7 +100,7 @@ inputText.addEventListener('input', () => {
     // transcript = input.value.toUpperCase();
     // transcript = input.value;
     textarea.innerHTML = input.value;
-    KW = transcript;
+
 
 })
 inputText.addEventListener('input', debounce(e => {
@@ -199,3 +200,10 @@ function keyWordsCheck() {
 //     }
 //     testSimple();
 // }
+function my_function(n) {
+    // Тут нужно написать решение
+    if (n <= 1) return 1;
+    return my_function(n - 1);
+    console.log(n);
+}
+my_function(3);
